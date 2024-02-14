@@ -21,26 +21,30 @@ public class NUnitTest
     }
 
     [Test]
-    public void OddNumberChecker_For_Even_Numbers_Return_False()
+    [TestCase(2)]
+    [TestCase(4)]
+    public void OddNumberChecker_For_Even_Numbers_Return_False(int a)
     {
         // Arrange
         Calculator calculator = new();
 
         //Act
-        var result = calculator.IsOddNumber(2);
+        var result = calculator.IsOddNumber(a);
         // Act and Assert
 
         Assert.That(result, Is.False);
     }
 
     [Test]
-    public void OddNumberChecker_For_Even_Numbers_Return_True()
+    [TestCase(3)]
+    [TestCase(5)]
+    public void OddNumberChecker_For_Even_Numbers_Return_True(int b)
     {
         //Arrange
         Calculator calculator = new();
 
         //Act
-        var result = calculator.IsOddNumber(3);
+        var result = calculator.IsOddNumber(b);
 
         //Assert
 
