@@ -50,4 +50,37 @@ public class NUnitTest
 
         Assert.That(result, Is.True);
     }
+
+    [Test]
+    [TestCase(11, ExpectedResult = true)]
+    [TestCase(10, ExpectedResult = false)]
+    public bool OddNumberCheck_Combined(int a)
+    {
+        //Arrange
+        Calculator calculator = new();
+
+        // Act
+        var result = calculator.IsOddNumber(a);
+
+        //Assert
+
+        return result;
+    }
+
+    [Test]
+    [TestCase(1.3, 4.0)]
+    [TestCase(3.0, 2.0)]
+    public void AddNumbers_Two_Doubles(double a, double b)
+    {
+        //Arrange
+
+        Calculator calculator = new();
+
+        //Act
+        var result = calculator.AddNumbersDouble(a, b);
+
+        //Assert
+        // Assert.That(result, Is.EqualTo(5.3));
+        Assert.AreEqual(5.3,result,1);
+    }
 }
