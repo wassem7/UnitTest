@@ -5,6 +5,14 @@ namespace Sparky;
 [TestFixture]
 public class NUnitTest
 {
+    private Calculator calculator;
+
+    [SetUp]
+    public void SetUp()
+    {
+        calculator = new Calculator();
+    }
+
     [Test]
     public void AddNumbers_TwoInts_GetCorrectAddtion()
     {
@@ -81,6 +89,17 @@ public class NUnitTest
 
         //Assert
         // Assert.That(result, Is.EqualTo(5.3));
-        Assert.AreEqual(5.3,result,1);
+        Assert.AreEqual(5.3, result, 1);
+    }
+
+    [Test]
+    [TestCase(5, 10)]
+    public void OddNumberRange_Min_Max(int min, int max)
+    {
+        //Act
+        List<int> expectedResults = new List<int>() { 5, 7, 9 };
+        var result = calculator.GetOddNumberRange(min, max);
+
+        Assert.That(result, Is.EquivalentTo(expectedResults));
     }
 }
