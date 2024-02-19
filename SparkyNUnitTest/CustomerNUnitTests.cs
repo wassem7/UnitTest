@@ -41,4 +41,12 @@ public class CustomerNUnitTests
         //Assert
         Assert.IsNull(customer.Greeting);
     }
+
+    [Test]
+    public void Customer_Discount_Range_Test()
+    {
+        var result = customer.Discount;
+        
+        Assert.That(result,Is.InRange(15,25));
+    }
 }
