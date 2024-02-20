@@ -9,7 +9,13 @@ public class Customer
     public string GreetAndCombineNames(string firstname, string lastname)
     {
         Discount = 20;
+
+        if (string.IsNullOrWhiteSpace(firstname))
+        {
+            throw new ArgumentException("Empty firstname");
+        }
         Greeting = $"Hello {firstname} {lastname}";
         return Greeting;
     }
+    
 }

@@ -27,9 +27,16 @@ public class CustomerNUnitTests
 
         //Assert
 
-        Assert.That(result, Is.EqualTo($"Hello {firstname} {lastname}"));
-        Assert.That(result, Does.StartWith("Hello"));
-        Assert.That(result, Does.Contain("wassem").IgnoreCase);
+        Assert.Multiple(
+            (
+                () =>
+                {
+                    Assert.That(result, Is.EqualTo($"Hello a{firstname} {lastname}"));
+                    Assert.That(result, Does.StartWith("Hello"));
+                    Assert.That(result, Does.Contain("wassem").IgnoreCase);
+                }
+            )
+        );
     }
 
     [Test]
@@ -46,7 +53,21 @@ public class CustomerNUnitTests
     public void Customer_Discount_Range_Test()
     {
         var result = customer.Discount;
-        
-        Assert.That(result,Is.InRange(15,25));
+
+        Assert.That(result, Is.InRange(15, 25));
+    }
+
+    [Test]
+    public void Customer_Greeting_Exception_Test()
+    {
+        //Assert Exception Message
+        var exception = Assert.Throws<ArgumentException>(
+            () => customer.GreetAndCombineNames("", "Darkwa")
+        );
+
+        //Assert only Exception
+
+        Assert.Throws<ArgumentException>(() => customer.GreetAndCombineNames("", "Darkwa"));
+        Assert.That("Empty firstname", Is.EqualTo(exception.Message));
     }
 }
