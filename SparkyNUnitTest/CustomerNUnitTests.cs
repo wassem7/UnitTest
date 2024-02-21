@@ -31,7 +31,7 @@ public class CustomerNUnitTests
             (
                 () =>
                 {
-                    Assert.That(result, Is.EqualTo($"Hello a{firstname} {lastname}"));
+                    Assert.That(result, Is.EqualTo($"Hello {firstname} {lastname}"));
                     Assert.That(result, Does.StartWith("Hello"));
                     Assert.That(result, Does.Contain("wassem").IgnoreCase);
                 }
@@ -69,5 +69,15 @@ public class CustomerNUnitTests
 
         Assert.Throws<ArgumentException>(() => customer.GreetAndCombineNames("", "Darkwa"));
         Assert.That("Empty firstname", Is.EqualTo(exception.Message));
+    }
+
+    [Test]
+    public void CustomerTypeUnitTest_Return_PlantinumCustomer()
+    {
+        customer.OrderTotal = 5;
+
+        var result = customer.GetCustomerDetails();
+
+        Assert.That(result, Is.TypeOf<Customer.PlatinumCustomer>());
     }
 }
