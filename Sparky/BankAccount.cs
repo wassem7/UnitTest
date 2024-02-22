@@ -2,15 +2,18 @@
 
 public class BankAccount
 {
+    private readonly ILogBook _logBook;
     private int _balance;
 
-    public BankAccount()
+    public BankAccount(ILogBook logBook)
     {
+        _logBook = logBook;
         _balance = 0;
     }
 
     public bool Deposit(int amount)
     {
+        _logBook.Message("Deposit invoked...");
         _balance += amount;
         return true;
     }
