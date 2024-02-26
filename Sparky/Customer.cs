@@ -6,6 +6,13 @@ public class Customer
 
     public int OrderTotal = 12;
     public int Discount = 15;
+    
+    public bool IsPlatinum { get; set; }
+
+    public Customer()
+    {
+        IsPlatinum = false;
+    }
 
     public string GreetAndCombineNames(string firstname, string lastname)
     {
