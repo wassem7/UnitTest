@@ -78,6 +78,6 @@ public class CustomerNUnitTests
 
         var result = customer.GetCustomerDetails();
 
-        Assert.That(result, Is.TypeOf<Customer.PlatinumCustomer>());
+        Assert.That(result, Is.TypeOf<PlatinumCustomer>());
     }
 }

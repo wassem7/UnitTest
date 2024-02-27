@@ -1,17 +1,30 @@
 ﻿namespace Sparky;
 
-public class Customer
+public interface ICustomer
+{
+    public string Greeting { get; set; }
+    public int OrderTotal { get; set; }
+    public int Discount { get; set; }
+    public bool IsPlatinum { get; set; }
+
+    public string GreetAndCombineNames(string firstname, string lastname);
+    public CustomerType GetCustomerDetails();
+}
+
+public class Customer : ICustomer
 {
     public string Greeting { get; set; }
 
-    public int OrderTotal = 12;
-    public int Discount = 15;
-    
+    public int OrderTotal { get; set; }
+
+    public int Discount { get; set; }
     public bool IsPlatinum { get; set; }
 
     public Customer()
     {
         IsPlatinum = false;
+        Discount = 15;
+        OrderTotal = 12;
     }
 
     public string GreetAndCombineNames(string firstname, string lastname)
@@ -35,10 +48,10 @@ public class Customer
 
         return new BasicCustomer();
     }
-
-    public class CustomerType { }
-
-    public class PlatinumCustomer : CustomerType { }
-
-    public class BasicCustomer : CustomerType { }
 }
+
+public class CustomerType { }
+
+public class PlatinumCustomer : CustomerType { }
+
+public class BasicCustomer : CustomerType { }
