@@ -22,9 +22,10 @@ public class BankAccount
     {
         if (amount < _balance)
         {
+            _logBook.LogToDb($"Amount requested to withdraw : {amount}");
             _balance -= amount;
 
-            return true;
+            _logBook.LogBalanceAfterWithdrawl(_balance - amount);
         }
 
         return false;

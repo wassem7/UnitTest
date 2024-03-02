@@ -3,6 +3,10 @@
 public interface ILogBook
 {
     public void Message(string message);
+
+    public bool LogToDb(string message);
+
+    public bool LogBalanceAfterWithdrawl(int balanceAfterWithdrawl);
 }
 
 public class LogBook : ILogBook
@@ -11,9 +15,23 @@ public class LogBook : ILogBook
     {
         Console.WriteLine(message);
     }
-}
 
-public class LogFakker : ILogBook
-{
-    public void Message(string message) { }
+    public bool LogToDb(string message)
+    {
+        Console.WriteLine(message);
+
+        return true;
+    }
+
+    public bool LogBalanceAfterWithdrawl(int balanceAfterWithdrawl)
+    {
+        if (balanceAfterWithdrawl >= 0)
+        {
+            Console.WriteLine("Success");
+            return true;
+        }
+
+        Console.WriteLine("failure");
+        return false;
+    }
 }

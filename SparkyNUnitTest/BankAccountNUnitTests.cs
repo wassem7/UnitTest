@@ -11,14 +11,14 @@ public class BankAccountNUnitTests
     [SetUp]
     public void SetUp() { }
 
-    [Test]
-    public void BankDepositLog_Fakker_Test_Return_True()
-    {
-        BankAccount bankAccount = new(new LogFakker());
-        var result = bankAccount.Deposit(100);
-
-        Assert.IsTrue(result);
-    }
+    // [Test]
+    // public void BankDepositLog_Fakker_Test_Return_True()
+    // {
+    //     BankAccount bankAccount = new(new LogFakker());
+    //     var result = bankAccount.Deposit(100);
+    //
+    //     Assert.IsTrue(result);
+    // }
 
     [Test]
     public void BankDeposit_Test_Return_True()
