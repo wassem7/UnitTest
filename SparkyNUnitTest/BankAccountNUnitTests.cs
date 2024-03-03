@@ -58,6 +58,7 @@ public class BankAccountNUnitTests
         var bankAccount = new BankAccount(loggerMock.Object);
 
         bankAccount.Deposit(200);
+
         var result = bankAccount.Withdraw(400);
 
         Assert.That(result, Is.True);
@@ -93,5 +94,18 @@ public class BankAccountNUnitTests
             .Callback((string str) => tempMessage += str);
         logMocker.Object.LogToDb("Kwame");
         Assert.That(tempMessage, Is.EqualTo("Hello, Kwame"));
+    }
+
+    [Test]
+    public void Test_Verification()
+    {
+        var logMock = new Mock<ILogBook>();
+        logMock.Setup(c => c.Message(It.IsAny<string>()));
+
+        var bankAccount = new BankAccount(logMock.Object);
+
+        bankAccount.Deposit(300);
+        Assert.That(bankAccount.GetBalance, Is.EqualTo(300));
+        logMock.Verify(v => v.Message(It.IsAny<string>()), Times.Exactly(1));
     }
 }
