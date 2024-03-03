@@ -20,15 +20,15 @@ public class BankAccount
 
     public bool Withdraw(int amount)
     {
-        if (amount < _balance)
+        if (amount <= _balance)
         {
             _logBook.LogToDb($"Amount requested to withdraw : {amount}");
             _balance -= amount;
 
-            _logBook.LogBalanceAfterWithdrawl(_balance - amount);
+            return _logBook.LogBalanceAfterWithdrawl(_balance);
         }
 
-        return false;
+        return _logBook.LogBalanceAfterWithdrawl(_balance - amount);
     }
 
     public int GetBalance()
